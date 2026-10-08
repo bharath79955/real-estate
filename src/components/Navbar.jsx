@@ -1,0 +1,349 @@
+import { useState } from "react";
+import {
+  Menu,
+  X,
+  Sun,
+  Moon,
+  LogOut,
+  Heart,
+} from "lucide-react";
+import {
+  Link,
+  NavLink,
+  useNavigate,
+} from "react-router-dom";
+import toast from "react-hot-toast";
+
+import { useApp } from "../context/AppContext";
+
+function Navbar() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const {
+    darkMode,
+    toggleDarkMode,
+    wishlist,
+    isLoggedIn,
+    logout,
+  } = useApp();
+
+  const navigate = useNavigate();
+
+  const navLinks = [
+    { name: "Home", path: "/" },
+    { name: "Properties", path: "/properties" },
+    { name: "Agents", path: "/agents" },
+    { name: "Contact", path: "/contact" },
+  ];
+
+  const closeMenu = () => {
+    setMobileMenuOpen(false);
+  };
+
+  const handleLogout = () => {
+    logout();
+    closeMenu();
+
+    toast.success("Logged out successfully.");
+
+    navigate("/");
+  };
+
+  // Open Wishlist page
+  const handleWishlist = () => {
+    navigate("/wishlist");
+    closeMenu();
+  };
+
+  return (
+    <header className="shinestone-navbar sticky top-0 z-50 border-b bg-white shadow-sm backdrop-blur-md">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+        <div className="flex h-16 items-center justify-between">
+
+          {/* =========================================
+              LOGO
+          ========================================= */}
+
+          <Link
+            to="/"
+            onClick={closeMenu}
+            className="shinestone-logo group flex items-center gap-3"
+          >
+            {/* Premium Logo Mark */}
+            <div className="relative flex h-11 w-11 items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 shadow-lg shadow-blue-600/25 transition duration-300 group-hover:scale-105 group-hover:shadow-blue-600/40">
+
+              <div className="absolute inset-[2px] rounded-[14px] border border-white/20" />
+
+              <span className="relative text-lg font-extrabold tracking-tight text-white">
+                S
+              </span>
+
+            </div>
+
+            {/* Brand Name */}
+            <div className="leading-none">
+
+              <span className="block text-[21px] font-extrabold tracking-tight text-slate-900 dark:text-white sm:text-[23px]">
+                Shine<span className="text-blue-600">Stone</span>
+              </span>
+
+              <span className="mt-1 block text-[8px] font-semibold uppercase tracking-[0.28em] text-slate-400 dark:text-slate-500">
+                Real Estate
+              </span>
+
+            </div>
+          </Link>
+
+          {/* =========================================
+              DESKTOP NAVIGATION
+          ========================================= */}
+
+          <nav className="hidden items-center gap-4 md:flex lg:gap-6">
+
+            {navLinks.map((link) => (
+              <NavLink
+                key={link.path}
+                to={link.path}
+                className={({ isActive }) =>
+                  `shinestone-nav-link rounded-lg px-3 py-2 text-sm font-medium ${
+                    isActive ? "active" : ""
+                  }`
+                }
+              >
+                {link.name}
+              </NavLink>
+            ))}
+
+          </nav>
+
+          {/* =========================================
+              DESKTOP ACTIONS
+          ========================================= */}
+
+          <div className="hidden items-center gap-2 md:flex">
+
+            {/* Wishlist */}
+            <button
+              type="button"
+              onClick={handleWishlist}
+              className="shinestone-icon-button relative flex h-10 w-10 items-center justify-center rounded-lg"
+              aria-label="Open wishlist"
+              title="Wishlist"
+            >
+              <Heart
+                size={19}
+                className={
+                  wishlist.length > 0
+                    ? "fill-red-500 text-red-500"
+                    : ""
+                }
+              />
+
+              {wishlist.length > 0 && (
+                <span className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-red-500 px-1 text-[10px] font-bold text-white">
+                  {wishlist.length}
+                </span>
+              )}
+            </button>
+
+            {/* Dark / Light Mode */}
+            <button
+              type="button"
+              onClick={toggleDarkMode}
+              className="shinestone-icon-button flex h-10 w-10 items-center justify-center rounded-lg"
+              aria-label="Toggle dark mode"
+              title={
+                darkMode
+                  ? "Switch to light mode"
+                  : "Switch to dark mode"
+              }
+            >
+              {darkMode ? (
+                <Sun size={20} />
+              ) : (
+                <Moon size={20} />
+              )}
+            </button>
+
+            {/* Authentication */}
+            {isLoggedIn ? (
+              <button
+                type="button"
+                onClick={handleLogout}
+                className="shinestone-auth-button ml-1 flex items-center gap-2 rounded-xl border px-4 py-2.5 text-sm font-semibold"
+              >
+                <LogOut size={17} />
+                Logout
+              </button>
+            ) : (
+              <>
+                <Link
+                  to="/login"
+                  className="shinestone-login-link rounded-xl px-4 py-2.5 text-sm font-semibold"
+                >
+                  Login
+                </Link>
+
+                <Link
+                  to="/signup"
+                  className="rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700"
+                >
+                  Sign Up
+                </Link>
+              </>
+            )}
+          </div>
+
+          {/* =========================================
+              MOBILE ACTIONS
+          ========================================= */}
+
+          <div className="flex items-center gap-1 md:hidden">
+
+            {/* Wishlist */}
+            <button
+              type="button"
+              onClick={handleWishlist}
+              className="shinestone-icon-button relative flex h-10 w-10 items-center justify-center rounded-lg"
+              aria-label="Open wishlist"
+              title="Wishlist"
+            >
+              <Heart
+                size={19}
+                className={
+                  wishlist.length > 0
+                    ? "fill-red-500 text-red-500"
+                    : ""
+                }
+              />
+
+              {wishlist.length > 0 && (
+                <span className="absolute right-0 top-0 flex h-4 min-w-4 items-center justify-center rounded-full bg-red-500 px-1 text-[9px] font-bold text-white">
+                  {wishlist.length}
+                </span>
+              )}
+            </button>
+
+            {/* Theme */}
+            <button
+              type="button"
+              onClick={toggleDarkMode}
+              className="shinestone-icon-button flex h-10 w-10 items-center justify-center rounded-lg"
+              aria-label="Toggle dark mode"
+            >
+              {darkMode ? (
+                <Sun size={20} />
+              ) : (
+                <Moon size={20} />
+              )}
+            </button>
+
+            {/* Menu */}
+            <button
+              type="button"
+              onClick={() =>
+                setMobileMenuOpen((value) => !value)
+              }
+              className="shinestone-icon-button flex h-10 w-10 items-center justify-center rounded-lg"
+              aria-label="Menu"
+            >
+              {mobileMenuOpen ? (
+                <X size={22} />
+              ) : (
+                <Menu size={22} />
+              )}
+            </button>
+
+          </div>
+        </div>
+
+        {/* =========================================
+            MOBILE MENU
+        ========================================= */}
+
+        {mobileMenuOpen && (
+          <div className="shinestone-mobile-menu border-t py-4 md:hidden">
+
+            <nav className="flex flex-col gap-1">
+
+              {navLinks.map((link) => (
+                <NavLink
+                  key={link.path}
+                  to={link.path}
+                  onClick={closeMenu}
+                  className={({ isActive }) =>
+                    `shinestone-mobile-link rounded-xl px-4 py-3 text-sm font-medium ${
+                      isActive ? "active" : ""
+                    }`
+                  }
+                >
+                  {link.name}
+                </NavLink>
+              ))}
+
+              {/* Mobile Wishlist */}
+              <button
+                type="button"
+                onClick={handleWishlist}
+                className="shinestone-mobile-link flex items-center gap-3 rounded-xl px-4 py-3 text-left text-sm font-medium"
+              >
+                <Heart
+                  size={18}
+                  className={
+                    wishlist.length > 0
+                      ? "fill-red-500 text-red-500"
+                      : ""
+                  }
+                />
+
+                <span>Wishlist</span>
+
+                {wishlist.length > 0 && (
+                  <span className="ml-auto rounded-full bg-red-500 px-2 py-0.5 text-xs font-bold text-white">
+                    {wishlist.length}
+                  </span>
+                )}
+              </button>
+
+              {/* Mobile Authentication */}
+              {isLoggedIn ? (
+                <button
+                  type="button"
+                  onClick={handleLogout}
+                  className="mt-2 flex items-center gap-3 rounded-xl border border-red-200 px-4 py-3 text-sm font-semibold text-red-600"
+                >
+                  <LogOut size={18} />
+                  Logout
+                </button>
+              ) : (
+                <div className="mt-2 grid grid-cols-2 gap-2">
+
+                  <Link
+                    to="/login"
+                    onClick={closeMenu}
+                    className="shinestone-mobile-auth rounded-xl border px-4 py-3 text-center text-sm font-semibold"
+                  >
+                    Login
+                  </Link>
+
+                  <Link
+                    to="/signup"
+                    onClick={closeMenu}
+                    className="rounded-xl bg-blue-600 px-4 py-3 text-center text-sm font-semibold text-white"
+                  >
+                    Sign Up
+                  </Link>
+
+                </div>
+              )}
+
+            </nav>
+          </div>
+        )}
+      </div>
+    </header>
+  );
+}
+
+export default Navbar;

@@ -1,0 +1,391 @@
+@import "tailwindcss";
+
+/* =========================================
+   BASE
+========================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family:
+    Inter,
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  background: #f8fafc;
+  color: #0f172a;
+
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+button {
+  cursor: pointer;
+}
+
+button,
+a,
+input,
+select,
+textarea {
+  transition: all 0.3s ease;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* =========================================
+   LIGHT THEME
+========================================= */
+
+[data-theme="light"] {
+  color-scheme: light;
+}
+
+/* =========================================
+   DARK THEME
+========================================= */
+
+[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+[data-theme="dark"] body {
+  background: #020617;
+  color: #f8fafc;
+}
+
+/* =========================================
+   COMMON TAILWIND OVERRIDES
+   This makes existing pages dark automatically
+========================================= */
+
+/* White backgrounds */
+
+[data-theme="dark"] .bg-white {
+  background-color: #0f172a !important;
+}
+
+/* Slate backgrounds */
+
+[data-theme="dark"] .bg-slate-50 {
+  background-color: #020617 !important;
+}
+
+[data-theme="dark"] .bg-slate-100 {
+  background-color: #0f172a !important;
+}
+
+[data-theme="dark"] .bg-slate-200 {
+  background-color: #1e293b !important;
+}
+
+[data-theme="dark"] .bg-slate-800 {
+  background-color: #1e293b !important;
+}
+
+[data-theme="dark"] .bg-slate-900 {
+  background-color: #0f172a !important;
+}
+
+[data-theme="dark"] .bg-slate-950 {
+  background-color: #020617 !important;
+}
+
+/* Text */
+
+[data-theme="dark"] .text-slate-900 {
+  color: #f8fafc !important;
+}
+
+[data-theme="dark"] .text-slate-800 {
+  color: #f1f5f9 !important;
+}
+
+[data-theme="dark"] .text-slate-700 {
+  color: #e2e8f0 !important;
+}
+
+[data-theme="dark"] .text-slate-600 {
+  color: #cbd5e1 !important;
+}
+
+[data-theme="dark"] .text-slate-500 {
+  color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .text-slate-400 {
+  color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .text-black {
+  color: #f8fafc !important;
+}
+
+/* Borders */
+
+[data-theme="dark"] .border-slate-200 {
+  border-color: #334155 !important;
+}
+
+[data-theme="dark"] .border-slate-300 {
+  border-color: #334155 !important;
+}
+
+[data-theme="dark"] .border-slate-700 {
+  border-color: #334155 !important;
+}
+
+[data-theme="dark"] .border-slate-800 {
+  border-color: #1e293b !important;
+}
+
+/* Dividers */
+
+[data-theme="dark"] .divide-slate-200 > :not([hidden]) ~ :not([hidden]) {
+  border-color: #334155 !important;
+}
+
+[data-theme="dark"] .divide-slate-700 > :not([hidden]) ~ :not([hidden]) {
+  border-color: #334155 !important;
+}
+
+/* Inputs */
+
+[data-theme="dark"] input,
+[data-theme="dark"] select,
+[data-theme="dark"] textarea {
+  background-color: #0f172a;
+  color: #f8fafc;
+  border-color: #334155;
+}
+
+[data-theme="dark"] input::placeholder,
+[data-theme="dark"] textarea::placeholder {
+  color: #64748b;
+}
+
+[data-theme="dark"] option {
+  background: #0f172a;
+  color: #f8fafc;
+}
+
+/* =========================================
+   DARK HOVER SUPPORT
+========================================= */
+
+[data-theme="dark"] .hover\:bg-slate-100:hover {
+  background-color: #1e293b !important;
+}
+
+[data-theme="dark"] .hover\:bg-slate-800:hover {
+  background-color: #334155 !important;
+}
+
+[data-theme="dark"] .hover\:text-white:hover {
+  color: #ffffff !important;
+}
+
+/* =========================================
+   SELECTION
+========================================= */
+
+::selection {
+  background: #2563eb;
+  color: white;
+}
+
+/* =========================================
+   SCROLLBAR
+========================================= */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #e2e8f0;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #94a3b8;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: #475569;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+/* =========================================
+   SHINESTONE NAVBAR THEME
+========================================= */
+
+/* LIGHT */
+[data-theme="light"] .shinestone-navbar {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border-color: #e2e8f0 !important;
+}
+
+[data-theme="light"] .shinestone-logo {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .shinestone-nav-link {
+  color: #475569 !important;
+}
+
+[data-theme="light"] .shinestone-nav-link:hover {
+  color: #2563eb !important;
+}
+
+[data-theme="light"] .shinestone-nav-link.active {
+  color: #2563eb !important;
+}
+
+[data-theme="light"] .shinestone-icon-button {
+  color: #475569 !important;
+}
+
+[data-theme="light"] .shinestone-icon-button:hover {
+  background-color: #f1f5f9 !important;
+  color: #2563eb !important;
+}
+
+[data-theme="light"] .shinestone-login-link {
+  color: #334155 !important;
+}
+
+[data-theme="light"] .shinestone-login-link:hover {
+  color: #2563eb !important;
+}
+
+
+/* =========================================
+   DARK NAVBAR
+========================================= */
+
+[data-theme="dark"] .shinestone-navbar {
+  background-color: rgba(2, 6, 23, 0.97) !important;
+  border-color: #1e293b !important;
+  color: #f8fafc !important;
+}
+
+[data-theme="dark"] .shinestone-logo {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .shinestone-logo span {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .shinestone-logo span span {
+  color: #60a5fa !important;
+}
+
+
+/* Desktop navigation */
+
+[data-theme="dark"] .shinestone-nav-link {
+  color: #cbd5e1 !important;
+}
+
+[data-theme="dark"] .shinestone-nav-link:hover {
+  color: #60a5fa !important;
+}
+
+[data-theme="dark"] .shinestone-nav-link.active {
+  color: #60a5fa !important;
+}
+
+
+/* Icons */
+
+[data-theme="dark"] .shinestone-icon-button {
+  color: #cbd5e1 !important;
+}
+
+[data-theme="dark"] .shinestone-icon-button:hover {
+  background-color: #1e293b !important;
+  color: #60a5fa !important;
+}
+
+
+/* Login */
+
+[data-theme="dark"] .shinestone-login-link {
+  color: #e2e8f0 !important;
+}
+
+[data-theme="dark"] .shinestone-login-link:hover {
+  color: #60a5fa !important;
+}
+
+
+/* Logout */
+
+[data-theme="dark"] .shinestone-auth-button {
+  border-color: #334155 !important;
+  color: #e2e8f0 !important;
+}
+
+[data-theme="dark"] .shinestone-auth-button:hover {
+  border-color: #ef4444 !important;
+  color: #f87171 !important;
+}
+
+
+/* Mobile menu */
+
+[data-theme="dark"] .shinestone-mobile-menu {
+  border-color: #1e293b !important;
+  background-color: #020617 !important;
+}
+
+[data-theme="dark"] .shinestone-mobile-link {
+  color: #cbd5e1 !important;
+}
+
+[data-theme="dark"] .shinestone-mobile-link:hover {
+  background-color: #1e293b !important;
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .shinestone-mobile-link.active {
+  background-color: rgba(37, 99, 235, 0.12) !important;
+  color: #60a5fa !important;
+}
+
+[data-theme="dark"] .shinestone-mobile-auth {
+  border-color: #334155 !important;
+  color: #e2e8f0 !important;
+}
