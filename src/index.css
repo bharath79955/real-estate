@@ -528,3 +528,56 @@ img {
   color: #60a5fa !important;
   background: #1e293b !important;
 }
+/* =========================================================
+   REAL MOBILE DEVICE NAVBAR FIX
+   ========================================================= */
+
+@media (max-width: 767px) {
+  [data-theme="dark"] .shinestone-navbar {
+    background-color: #020617 !important;
+    color: #f8fafc !important;
+  }
+
+  [data-theme="dark"] .shinestone-mobile-menu {
+    background-color: #020617 !important;
+    border-top: 1px solid #1e293b !important;
+  }
+
+  [data-theme="dark"] .shinestone-mobile-link {
+    color: #e2e8f0 !important;
+    background-color: transparent !important;
+  }
+
+  [data-theme="dark"] .shinestone-mobile-link.active {
+    color: #60a5fa !important;
+    background-color: #172554 !important;
+  }
+
+  [data-theme="dark"] .shinestone-mobile-link:hover {
+    color: #ffffff !important;
+    background-color: #1e293b !important;
+  }
+
+  [data-theme="dark"] .shinestone-mobile-auth {
+    color: #f8fafc !important;
+    border-color: #475569 !important;
+    background-color: transparent !important;
+  }
+
+  [data-theme="dark"] .shinestone-icon-button {
+    color: #e2e8f0 !important;
+    background-color: transparent !important;
+  }
+
+  [data-theme="dark"] .shinestone-logo {
+    color: #ffffff !important;
+  }
+
+  [data-theme="dark"] .shinestone-logo span {
+    color: #ffffff !important;
+  }
+
+  [data-theme="dark"] .shinestone-logo span span {
+    color: #60a5fa !important;
+  }
+}
